@@ -1,4 +1,6 @@
+require('dotenv').config()
 const express = require('express');
+
 const app = express()
 const dotenv = require ("dotenv")
 dotenv.config();
@@ -7,6 +9,17 @@ const port = 1000
 
 const {json} = require("body-parser");
 const demo = require("./routes/userRoutes")
+
+// using ngrok
+const ngrok = require('ngrok');
+(async function() {
+  const url = await ngrok.connect(port);
+  console.log(url)
+})();
+
+app.get("/", (req, res) => {
+  res.json("welcome to my api")
+});
 
 app.use(express.json())
 
@@ -19,5 +32,5 @@ db()
   app.use("/api/user", demo)
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`runing server`)
 })
