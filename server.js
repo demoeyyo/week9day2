@@ -2,7 +2,7 @@ const express = require('express');
 const app = express()
 const dotenv = require ("dotenv")
 dotenv.config();
-const db = require ("./Routes/database/db")
+const db = require ("./config/db")
 const port = 1000
 
 const {json} = require("body-parser");
